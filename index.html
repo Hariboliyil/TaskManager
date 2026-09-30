@@ -221,6 +221,13 @@
 <button class="task-status-slicer" data-task-status="Completed" type="button">Completed</button>
 </div>
 <button class="secondary reset-filters" id="resetTaskFilters" type="button">Reset filters</button>
+<div class="recurring-export-actions">
+<button class="secondary" id="exportRecurringFull" type="button">⇩&nbsp; Export full list</button>
+<button class="secondary" id="exportRecurringFiltered" type="button">▽&nbsp; Export filtered</button>
+<label class="secondary recurring-import-button" for="importRecurringFile">⇧&nbsp; Import CSV / Excel</label>
+<input id="importRecurringFile" type="file" accept=".csv,.xls,.xlsx,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+</div>
+<p id="recurringImportResult" class="recurring-import-result" role="status" aria-live="polite"></p>
 </div>
 <div class="table-wrap">
 <table class="task-table">
@@ -228,7 +235,6 @@
 <tr>
 <th>
 <button id="addTaskRow" class="add-row" type="button">+</button>Task</th>
-<th>Frequency</th>
 <th>Due date</th>
 <th>Done</th>
 <th>Status</th>
@@ -304,7 +310,8 @@
 </datalist>
 <script src="config.js?v=1">
 </script>
-<script src="app.js">
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="app.js?v=2">
 </script>
 </body>
 </html>

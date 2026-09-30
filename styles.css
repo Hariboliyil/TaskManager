@@ -154,6 +154,12 @@ h1 { color:#fff; font-family:"DM Sans",sans-serif; font-size:clamp(2rem,3.3vw,2.
 .recurring-filters { background:#061a35; border-top:1px solid #193b66; border-bottom:1px solid #193b66; gap:14px; padding:13px 20px; }
 .recurring-filters label { color:#c0d4f2; font-size:.83rem; }
 .recurring-filters select,.recurring-filters input { background:#0a2446; border-color:#2b588a; color:#edf5ff; }
+.recurring-export-actions { display:flex; flex-wrap:wrap; gap:18px; }
+.recurring-export-actions .secondary { font-size:.88rem; white-space:nowrap; }
+.recurring-export-actions .secondary:nth-child(2) { border-color:#2dddd0; color:#4fe9db; }
+.recurring-import-button { cursor:pointer; }
+.recurring-import-result { flex-basis:100%; margin:0; color:#9fc8f4; font-size:.76rem; }
+.recurring-import-result.error { color:#ff9cab; }
 .search { background:#0a2446; border-color:#2b588a; color:#a9c7ee; }
 .search input { color:#edf5ff; }
 .search input::placeholder { color:#8ca3c7; }
