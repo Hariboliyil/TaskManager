@@ -11,6 +11,7 @@
 </head>
 <body>
 <main class="app-shell">
+<aside class="sidebar">
 <header class="topbar">
 <div>
 <p class="eyebrow">WORKSPACE</p>
@@ -20,12 +21,22 @@
 </div>
 </header>
 <nav class="tabs">
-<button class="tab active" data-tab="dashboard" type="button">Dashboard</button>
-<button class="tab" data-tab="tasks" type="button">Recurring Tasks</button>
-<button class="tab" data-tab="tat" type="button">TAT</button>
+<button class="tab active" data-tab="dashboard" data-nav="dashboard" type="button"><span>⌂</span>Dashboard</button>
+<button class="tab" data-tab="tasks" data-nav="tasks" type="button"><span>▣</span>Recurring Tasks</button>
+<button class="tab" data-tab="tat" data-nav="tat" type="button"><span>▥</span>TAT</button>
+<span class="nav-divider"></span>
+<button class="tab utility-tab" data-tab="tasks" data-nav="all-tasks" type="button"><span>☷</span>All Tasks</button>
+<button class="tab utility-tab" data-tab="calendar" data-nav="calendar" type="button"><span>▦</span>Calendar</button>
 </nav>
+ </aside>
+<section class="main-content">
+<header class="commandbar">
+<label class="global-search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search tasks, ID or keyword..."><kbd>Ctrl + K</kbd></label>
+<div class="command-meta"><span id="commandDate">Monday, 28 September 2026</span><span>◷ <span id="commandTime">08:15 AM</span></span><button aria-label="Notifications" type="button">♧</button><button aria-label="Settings" type="button">⚙</button><b>HO</b></div>
+</header>
 <section id="dashboardPanel">
 <div class="dashboard-hero">
+<span class="hero-sun">☀</span>
 <div>
 <p class="eyebrow">WORKFLOW INTELLIGENCE</p>
 <h2>Good morning, Harib <span>✦</span>
@@ -37,6 +48,7 @@
 <strong id="dashboardDate">
 </strong>
 </div>
+<div class="hero-quote">“Plan. Prioritize. Progress.”<small>Stay focused · Keep moving forward</small></div>
 </div>
 <section class="due-lists">
 <article class="dash-card due-card">
@@ -62,6 +74,12 @@
 <p>Total tasks</p>
 <strong id="dashTotal">0</strong>
 <small id="dashTotalNote">Across all trackers</small>
+</article>
+<article class="metric-card teal recurring-metric">
+<span class="metric-icon">↻</span>
+<p>Active recurring</p>
+<strong id="dashRecurring">0</strong>
+<small>Scheduled and running tasks</small>
 </article>
 <article class="metric-card amber">
 <span class="metric-icon">◷</span>
@@ -139,6 +157,17 @@
 <div id="priorityQueue" class="priority-queue">
 </div>
 </article>
+</section>
+</section>
+<section id="calendarPanel" hidden>
+<section class="calendar-card">
+<div class="calendar-heading">
+<div><p class="eyebrow">RECURRING TASKS</p><h2>Calendar</h2></div>
+<div class="calendar-controls"><button id="calendarPrev" type="button" aria-label="Previous month">←</button><strong id="calendarMonth"></strong><button id="calendarNext" type="button" aria-label="Next month">→</button><button id="calendarToday" type="button">Today</button></div>
+</div>
+<div class="calendar-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+<div id="calendarGrid" class="calendar-grid"></div>
+<p class="calendar-key"><i></i> Recurring task due &nbsp; <i class="calendar-key-done"></i> Completed</p>
 </section>
 </section>
 <section id="tasksPanel" hidden>
@@ -265,6 +294,7 @@
 </table>
 <p class="empty-state" id="tatFilterEmpty" hidden>No saved TAT entries match these filters.</p>
 </div>
+</section>
 </section>
 </section>
 </main>
