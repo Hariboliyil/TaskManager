@@ -230,16 +230,15 @@
 <p id="recurringImportResult" class="recurring-import-result" role="status" aria-live="polite"></p>
 </div>
 <div class="table-wrap">
-<table class="task-table">
+<table class="task-table excel-sheet">
 <thead>
 <tr>
-<th>
-<button id="addTaskRow" class="add-row" type="button">+</button>Task</th>
-<th>Due date</th>
-<th>Done</th>
-<th>Status</th>
-<th>Remarks</th>
-<th>
+<th><span class="sheet-letter">A</span><button id="addTaskRow" class="add-row" type="button">+</button>Task</th>
+<th><span class="sheet-letter">B</span>Due date</th>
+<th><span class="sheet-letter">C</span>Done</th>
+<th><span class="sheet-letter">D</span>Status</th>
+<th><span class="sheet-letter">E</span>Remarks</th>
+<th><span class="sheet-letter">F</span>
 </th>
 </tr>
 </thead>
@@ -258,6 +257,10 @@
 <p class="eyebrow">TASK ACTION TRACKER</p>
 <h2>Track • Manage • Complete</h2>
 </div>
+</div>
+<div class="tat-primary-action">
+<button class="secondary" id="editTatRow" type="button" disabled><span aria-hidden="true">✎</span> Edit selected</button>
+<button class="secondary" id="saveTatRow" type="button" hidden>Save changes</button>
 </div>
 <div class="tat-controls">
 <div class="slicer">
@@ -283,16 +286,17 @@
 </div>
 </div>
 <div class="table-wrap">
-<table class="tat-table">
+<table class="tat-table excel-sheet">
 <thead>
 <tr>
+<th class="select-column"><span class="sheet-corner">#</span></th>
 <th>
-<button id="addTatRow" class="add-row" type="button">+</button>Date</th>
-<th>Task description</th>
-<th>What to do</th>
-<th>Class</th>
-<th>Status</th>
-<th>Action</th>
+<span class="sheet-letter">A</span><button id="addTatRow" class="add-row" type="button">+</button>Date</th>
+<th><span class="sheet-letter">B</span>Task description</th>
+<th><span class="sheet-letter">C</span>What to do</th>
+<th><span class="sheet-letter">D</span>Class</th>
+<th><span class="sheet-letter">E</span>Status</th>
+<th><span class="sheet-letter">F</span>Action</th>
 </tr>
 </thead>
 <tbody id="tatRows">

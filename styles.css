@@ -86,6 +86,9 @@ dialog form { padding:27px; }
 .task-input { width:100%; min-width:100px; border:1px solid transparent; border-radius:6px; padding:9px 8px; color:var(--ink); font:inherit; background:transparent; }
 .task-input:hover,.task-input:focus { background:#fff; border-color:#d7cfc2; outline:0; }
 .blank-row .task-input::placeholder { color:#abb2b9; }
+.recurring-actions { display:flex; align-items:center; justify-content:flex-end; gap:7px; }
+.filter-task { display:inline-grid; place-items:center; width:31px; height:31px; padding:0; border:1px solid #2b8fe5; border-radius:7px; background:#0b294f; color:#72c5ff; font-size:1.15rem; line-height:1; cursor:pointer; }
+.filter-task:hover,.filter-task:focus-visible { background:#124575; border-color:#5bb7ff; color:#fff; outline:0; }
 
 .recurring-filters { display:flex; align-items:center; flex-wrap:wrap; gap:13px; padding:0 30px 20px; }
 .recurring-filters label { color:var(--muted); font-size:.76rem; font-weight:700; }
@@ -142,6 +145,12 @@ h1 { color:#fff; font-family:"DM Sans",sans-serif; font-size:clamp(2rem,3.3vw,2.
 .card-heading h2 { color:#a8c6ff; font-family:"DM Sans",sans-serif; font-size:.78rem; font-weight:500; letter-spacing:.02em; margin-top:2px; }
 
 .tat-controls { flex:1; flex-direction:row; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:10px 25px; }
+.tat-primary-action { display:flex; align-items:center; gap:8px; margin-left:18px; }
+#editTatRow { border-color:#f5a623; background:linear-gradient(135deg,#b85a09,#e78d16); color:#fff5df; box-shadow:0 0 0 1px #ffd36933,inset 0 1px #fff1bf66,0 0 18px #e98d1a66; }
+#editTatRow span { margin-right:4px; font-size:1.1rem; }
+#editTatRow:hover:not(:disabled),#editTatRow:focus-visible:not(:disabled) { border-color:#ffe2a5; background:linear-gradient(135deg,#dc7608,#f5a623); color:#fff; box-shadow:0 0 0 3px #f5a6233d,0 0 24px #f5a6238c; outline:0; }
+#editTatRow:disabled { border-color:#53667b; background:#1a2d42; color:#91a1b2; box-shadow:none; cursor:not-allowed; opacity:.72; }
+#saveTatRow { border-color:#2dddd0; background:linear-gradient(135deg,#087a79,#0aa69d); color:#ecfffc; box-shadow:0 0 16px #19d8cb52; }
 .slicer { color:#d7e4ff; font-size:.94rem; font-weight:500; gap:7px; }
 .slicer-button,.status-slicer-button,.done-slicer,.task-status-slicer { background:linear-gradient(#0d294e,#09213f); border:1px solid #2c5688; border-radius:999px; color:#f4f7ff; padding:10px 15px; font-size:.86rem; font-weight:500; box-shadow:inset 0 1px #84b5f01a; }
 .slicer-button.active,.status-slicer-button.active,.done-slicer.active,.task-status-slicer.active { background:linear-gradient(135deg,#2789ff,#1970e7); border-color:#58b1ff; box-shadow:0 0 18px #1687ff69,inset 0 1px #b5e7ff88; color:#fff; }
@@ -154,9 +163,12 @@ h1 { color:#fff; font-family:"DM Sans",sans-serif; font-size:clamp(2rem,3.3vw,2.
 .recurring-filters { background:#061a35; border-top:1px solid #193b66; border-bottom:1px solid #193b66; gap:14px; padding:13px 20px; }
 .recurring-filters label { color:#c0d4f2; font-size:.83rem; }
 .recurring-filters select,.recurring-filters input { background:#0a2446; border-color:#2b588a; color:#edf5ff; }
-.recurring-export-actions { display:flex; flex-wrap:wrap; gap:18px; }
-.recurring-export-actions .secondary { font-size:.88rem; white-space:nowrap; }
-.recurring-export-actions .secondary:nth-child(2) { border-color:#2dddd0; color:#4fe9db; }
+.recurring-export-actions { display:flex; flex:0 0 auto; flex-wrap:wrap; align-items:center; gap:8px; }
+.recurring-export-actions .secondary { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:8px 12px; border-radius:8px; font-size:.76rem; font-weight:800; line-height:1; white-space:nowrap; transition:transform .18s ease,filter .18s ease,box-shadow .18s ease; }
+.recurring-export-actions .secondary:hover,.recurring-export-actions .secondary:focus-visible { filter:brightness(1.12); transform:translateY(-1px); outline:0; }
+#exportRecurringFull { border-color:#278ee8; background:linear-gradient(135deg,#0c4d90,#106ac2); color:#d9efff; box-shadow:inset 0 1px #8bd1ff38,0 4px 12px #0861bb3d; }
+#exportRecurringFiltered { border-color:#20c5b5; background:linear-gradient(135deg,#075f64,#078d87); color:#d9fffb; box-shadow:inset 0 1px #a2fff746,0 4px 12px #0ab8aa36; }
+.recurring-import-button { border-color:#9d72f5!important; background:linear-gradient(135deg,#55309b,#7447c7)!important; color:#f0e7ff!important; box-shadow:inset 0 1px #e0c8ff4a,0 4px 12px #7a49c83d!important; cursor:pointer; }
 .recurring-import-button { cursor:pointer; }
 .recurring-import-result { flex-basis:100%; margin:0; color:#9fc8f4; font-size:.76rem; }
 .recurring-import-result.error { color:#ff9cab; }
@@ -168,6 +180,7 @@ th { background:#0a2345; border-color:#1b416f; color:#d8e6ff; font-size:.69rem; 
  td { background:#061a34; border-color:#17385f; color:#ecf4ff; padding:10px 13px; font-size:.82rem; }
 .tat-table td,.task-table td { padding:7px 10px; }
 .tat-table tbody tr:hover td,.task-table tbody tr:hover td { background:#092042; }
+.task-table tbody tr.task-focus td { background:#0b315d; box-shadow:inset 0 1px #42a6ff66,inset 0 -1px #42a6ff66; }
 .tat-table th:first-child { width:16%; }
 .tat-table th:nth-child(2) { width:30%; }
 .tat-table th:nth-child(3) { width:20%; }
@@ -194,6 +207,7 @@ th { background:#0a2345; border-color:#1b416f; color:#d8e6ff; font-size:.69rem; 
 
 @media (max-width:1050px) { .app-shell { padding-top:20px; }
 .card-heading { align-items:flex-start; flex-direction:column; }
+.tat-primary-action { margin:0; }
 .tat-controls { justify-content:flex-start; }
 .export-actions { margin-top:2px; }
  }
@@ -209,7 +223,37 @@ th { background:#0a2345; border-color:#1b416f; color:#d8e6ff; font-size:.69rem; 
 .slicer-button,.status-slicer-button,.done-slicer,.task-status-slicer { padding:8px 10px; }
  }
 
-.tat-actions { display:flex; align-items:center; gap:6px; }
+.table-wrap { max-height:calc(100vh - 245px); overflow:auto; background:#051832; }
+.excel-sheet { border-collapse:separate; border-spacing:0; min-width:980px; table-layout:fixed; }
+.excel-sheet th,.excel-sheet td { border:0; border-right:1px solid #1a406b; border-bottom:1px solid #1a406b; }
+.excel-sheet thead th { position:sticky; top:0; z-index:3; height:50px; padding:5px 11px 8px; background:linear-gradient(#10365f,#0a284c); color:#eff7ff; box-shadow:0 1px 0 #3a77a9,inset 0 1px #6da9dc42; text-transform:none; vertical-align:bottom; }
+.excel-sheet thead th:first-child { position:sticky; left:0; z-index:5; background:#0b2b50; }
+.excel-sheet tbody td { height:44px; padding:7px 10px; background:#061d39; vertical-align:middle; }
+.excel-sheet tbody tr:nth-child(even) td { background:#08213f; }
+.excel-sheet tbody tr:hover td { background:#0b294d; }
+.excel-sheet tbody tr:last-child td { border-bottom:1px solid #1a406b; }
+.excel-sheet th:last-child,.excel-sheet td:last-child { border-right:0; }
+.sheet-letter { display:block; margin:0 0 3px; color:#6dbdff; font-size:.58rem; font-weight:800; letter-spacing:.12em; line-height:1; text-transform:uppercase; }
+.sheet-corner { color:#73baff; font-size:.7rem; }
+.tat-table th:first-child,.tat-table td:first-child { width:54px; }
+.tat-table th:nth-child(2) { width:15%; }
+.tat-table th:nth-child(3) { width:32%; }
+.tat-table th:nth-child(4) { width:20%; }
+.tat-table th:nth-child(5) { width:11%; }
+.tat-table th:nth-child(6) { width:13%; }
+.tat-table th:nth-child(7) { width:62px; }
+.tat-actions { display:flex; align-items:center; justify-content:center; gap:6px; }
+.select-column { padding:0!important; text-align:center; }
+.row-number { display:inline-grid; place-items:center; width:100%; min-height:43px; color:#7f9fc6; font-variant-numeric:tabular-nums; font-size:.72rem; }
+.tat-select { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+.tat-selected td { background:#0d3762!important; box-shadow:inset 0 1px #4fb4ff80,inset 0 -1px #4fb4ff80; }
+.tat-selected .select-column { box-shadow:inset 3px 0 #38b8ff,inset 0 1px #4fb4ff80,inset 0 -1px #4fb4ff80; }
+.tat-selected .row-number { color:#fff; font-weight:800; }
+.tat-description-display { white-space:pre-wrap; }
+.tat-table td { vertical-align:middle; }
+.tat-table .tat-editing td { vertical-align:top; background:#0b2c51!important; }
+.excel-sheet .tat-input,.excel-sheet .task-input { border-radius:2px; padding:6px 7px; }
+.excel-sheet .tat-input:focus,.excel-sheet .task-input:focus { background:#0c315b; border-color:#45b3ff; box-shadow:0 0 0 2px #238bed52; }
 .done { background:#113b3b; border:1px solid #219f91; border-radius:7px; color:#62e1d3; cursor:pointer; font:600 .72rem "DM Sans",sans-serif; height:29px; padding:0 8px; }
 .done:hover { background:#17504e; }
 
